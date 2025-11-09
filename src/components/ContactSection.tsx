@@ -4,6 +4,15 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Download } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const demonstrationSchema = z.object({
+  name: z.string().trim().min(1, "Nome é obrigatório").max(100, "Nome deve ter no máximo 100 caracteres"),
+  organization: z.string().trim().min(1, "Órgão é obrigatório").max(200, "Nome do órgão deve ter no máximo 200 caracteres"),
+  email: z.string().trim().email("Email inválido").max(255, "Email deve ter no máximo 255 caracteres"),
+  phone: z.string().trim().min(1, "Telefone é obrigatório").max(20, "Telefone deve ter no máximo 20 caracteres"),
+});
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -13,25 +22,45 @@ const ContactSection = () => {
     phone: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validação simples
-    if (!formData.name || !formData.organization || !formData.email || !formData.phone) {
-      toast.error("Por favor, preencha todos os campos");
-      return;
-    }
+    try {
+      // Validar dados com zod
+      const validatedData = demonstrationSchema.parse(formData);
 
-    // Aqui você adicionaria a lógica de envio do formulário
-    toast.success("Solicitação enviada com sucesso! Entraremos em contato em breve.");
-    
-    // Limpar formulário
-    setFormData({
-      name: "",
-      organization: "",
-      email: "",
-      phone: "",
-    });
+      // Salvar no Supabase
+      const { error } = await supabase
+        .from('demonstration_requests')
+        .insert({
+          name: validatedData.name,
+          organization: validatedData.organization,
+          email: validatedData.email,
+          phone: validatedData.phone,
+        });
+
+      if (error) throw error;
+
+      toast.success("Solicitação enviada com sucesso! Entraremos em contato em breve.");
+      
+      // Limpar formulário
+      setFormData({
+        name: "",
+        organization: "",
+        email: "",
+        phone: "",
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        // Mostrar erros de validação
+        error.errors.forEach((err) => {
+          toast.error(err.message);
+        });
+      } else {
+        console.error('Erro ao enviar solicitação:', error);
+        toast.error("Erro ao enviar solicitação. Por favor, tente novamente.");
+      }
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
