@@ -155,12 +155,17 @@ const Dashboard = () => {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    toast({
-      title: "Logout realizado",
-      description: "Você saiu com sucesso",
-    });
-    navigate("/login");
+    try {
+      await supabase.auth.signOut();
+      toast({
+        title: "Logout realizado",
+        description: "Você saiu com sucesso",
+      });
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    } finally {
+      navigate("/login");
+    }
   };
 
   const scrollToColumn = (columnKey: string) => {
