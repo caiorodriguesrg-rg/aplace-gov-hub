@@ -17,19 +17,19 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 28% 17%;
 
-    /* Roxo escuro - cor principal #441337 */
-    --primary: 322 56% 17%;
+    /* Azul profundo - cor principal */
+    --primary: 215 60% 25%;
     --primary-foreground: 0 0% 100%;
     
-    /* Rosa/Magenta - cor de destaque #BE71AC */
-    --accent: 314 38% 59%;
+    /* Laranja/coral - cor de destaque */
+    --accent: 14 100% 60%;
     --accent-foreground: 0 0% 100%;
 
-    /* Roxo ainda mais escuro para headers/footers */
-    --primary-dark: 322 56% 12%;
+    /* Azul ainda mais escuro para headers/footers */
+    --primary-dark: 215 65% 18%;
     
-    /* Rosa hover */
-    --accent-hover: 314 38% 65%;
+    /* Laranja hover */
+    --accent-hover: 14 100% 55%;
 
     --secondary: 215 20% 95%;
     --secondary-foreground: 215 28% 17%;
@@ -47,15 +47,15 @@ All colors MUST be HSL.
     --radius: 0.75rem;
     
     /* Gradientes */
-    --gradient-primary: linear-gradient(135deg, hsl(322 56% 17%) 0%, hsl(322 56% 25%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(314 38% 59%) 0%, hsl(314 38% 65%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(322 56% 12%) 0%, hsl(322 56% 20%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(215 60% 25%) 0%, hsl(215 65% 35%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(14 100% 60%) 0%, hsl(14 100% 70%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(215 65% 18%) 0%, hsl(215 60% 30%) 100%);
     
     /* Sombras */
-    --shadow-sm: 0 2px 4px hsla(322, 56%, 17%, 0.05);
-    --shadow-md: 0 4px 12px hsla(322, 56%, 17%, 0.1);
-    --shadow-lg: 0 12px 24px hsla(322, 56%, 17%, 0.15);
-    --shadow-accent: 0 8px 20px hsla(314, 38%, 59%, 0.25);
+    --shadow-sm: 0 2px 4px hsla(215, 60%, 25%, 0.05);
+    --shadow-md: 0 4px 12px hsla(215, 60%, 25%, 0.1);
+    --shadow-lg: 0 12px 24px hsla(215, 60%, 25%, 0.15);
+    --shadow-accent: 0 8px 20px hsla(14, 100%, 60%, 0.25);
     
     /* Transições */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -69,8 +69,6 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Carbona', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-weight: 600;
     font-feature-settings: 'kern' 1, 'liga' 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
