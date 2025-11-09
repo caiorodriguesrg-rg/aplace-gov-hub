@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
-import logoImage from "@/assets/aplace-logo.png";
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const scrollToSection = (id: string) => {
@@ -18,11 +17,9 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <img 
-              src={logoImage} 
-              alt="Á.Place - Sistema de Marketplace" 
-              className="h-8 sm:h-10 w-auto"
-            />
+            <h1 className="text-xl sm:text-2xl font-bold text-white">
+              Á.Place <span className="text-accent"></span>
+            </h1>
           </div>
 
           {/* Desktop Navigation */}
