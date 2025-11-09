@@ -21,10 +21,7 @@ const Login = () => {
     // Check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      if (session) {
-        // Check approval status before allowing access
-        checkApprovalStatus(session.user.id);
-      }
+      // Don't auto-redirect - allow access to login page
     });
 
     // Listen for auth changes
@@ -32,8 +29,8 @@ const Login = () => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      if (session) {
-        // Check approval status before allowing access
+      // Only redirect after a successful login event, not on page load
+      if (_event === 'SIGNED_IN' && session) {
         checkApprovalStatus(session.user.id);
       }
     });
