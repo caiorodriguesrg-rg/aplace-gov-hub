@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Session } from "@supabase/supabase-js";
 import { KanbanColumn } from "@/components/KanbanColumn";
-import { ArrowLeft, LogOut } from "lucide-react";
+import { ArrowLeft, LogOut, Users, TrendingUp, CheckCircle, XCircle, Clock } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface DemonstrationRequest {
   id: string;
@@ -140,6 +141,18 @@ const Dashboard = () => {
     return requests.filter((req) => req.status === status);
   };
 
+  const stats = {
+    total: requests.length,
+    new: getRequestsByStatus("new").length,
+    contacted: getRequestsByStatus("contacted").length,
+    negotiating: getRequestsByStatus("negotiating").length,
+    closed: getRequestsByStatus("closed").length,
+    lost: getRequestsByStatus("lost").length,
+    conversionRate: requests.length > 0 
+      ? ((getRequestsByStatus("closed").length / requests.length) * 100).toFixed(1)
+      : "0",
+  };
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     toast({
@@ -202,6 +215,90 @@ const Dashboard = () => {
       </div>
 
       <div className="container mx-auto px-6 py-8">
+        {/* Cards de Métricas */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Total de Leads
+              </CardTitle>
+              <Users className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.total}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Todas as solicitações
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Novos Contatos
+              </CardTitle>
+              <Clock className="h-4 w-4 text-blue-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.new}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Aguardando contato
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Em Negociação
+              </CardTitle>
+              <TrendingUp className="h-4 w-4 text-purple-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.negotiating}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Oportunidades ativas
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Fechados
+              </CardTitle>
+              <CheckCircle className="h-4 w-4 text-green-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.closed}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Conversões realizadas
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Taxa de Conversão
+              </CardTitle>
+              <TrendingUp className="h-4 w-4 text-green-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.conversionRate}%</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                {stats.closed} de {stats.total} leads
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* CRM Kanban */}
+        <div className="mb-4">
+          <h2 className="text-lg font-semibold text-foreground">Pipeline de Vendas</h2>
+          <p className="text-sm text-muted-foreground">Arraste os cards para atualizar o status</p>
+        </div>
+        
         <div className="flex gap-6 overflow-x-auto pb-4">
           {statuses.map((status) => (
             <KanbanColumn
