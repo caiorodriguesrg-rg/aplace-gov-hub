@@ -48,15 +48,31 @@ const Login = () => {
 
   const checkApprovalStatus = async (userId: string) => {
     try {
+      // 1) Se for ADMIN, permitir acesso direto ao dashboard
+      const { count: adminCount, error: roleError } = await supabase
+        .from("user_roles")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", userId)
+        .eq("role", "admin");
+
+      if (roleError) {
+        console.error("Error checking role:", roleError);
+      }
+
+      if (adminCount && adminCount > 0) {
+        navigate("/dashboard");
+        return;
+      }
+
+      // 2) Caso não seja admin, verificar aprovação no perfil
       const { data: profile, error } = await supabase
         .from("profiles")
         .select("approved")
         .eq("id", userId)
-        .single();
+        .maybeSingle();
 
       if (error) {
         console.error("Error checking approval status:", error);
-        // Se não encontrar o perfil, assumir que não está aprovado
         toast({
           title: "Erro de Configuração",
           description: "Perfil não encontrado. Entre em contato com o administrador.",
@@ -67,15 +83,14 @@ const Login = () => {
       }
 
       if (!profile?.approved) {
-        // User is not approved, sign them out
         await supabase.auth.signOut();
         toast({
           title: "Aguardando Aprovação",
-          description: "Sua conta está aguardando aprovação de um administrador. Você receberá um email quando sua conta for aprovada.",
+          description:
+            "Sua conta está aguardando aprovação de um administrador. Você receberá um email quando sua conta for aprovada.",
           variant: "destructive",
         });
       } else {
-        // User is approved, redirect to dashboard
         navigate("/dashboard");
       }
     } catch (error) {
