@@ -51,18 +51,18 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                 <a href="mailto:contato@apice.tech" className="hover:text-accent transition-colors">
-                  contato@apice.tech
+                  adm@apicetecnologias.com.br
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                 <a href="tel:+5500000000000" className="hover:text-accent transition-colors">
-                  +55 (00) 0000-0000
+                  +55 (85) 99998-9237
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                <span>Brasil</span>
+                <span>São Paulo, Brasil</span>
               </li>
             </ul>
           </div>
