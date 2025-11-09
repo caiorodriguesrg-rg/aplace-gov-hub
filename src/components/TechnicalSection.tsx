@@ -1,0 +1,60 @@
+import { CheckCircle2 } from "lucide-react";
+import { Card } from "@/components/ui/card";
+
+const TechnicalSection = () => {
+  const features = [
+    {
+      title: "Credenciamento Eletrônico",
+      description: "Procedimentos Lei 14.133/2021",
+    },
+    {
+      title: "Pré-qualificação de Produtos e Serviços",
+      description: "Fornecedores verificados e qualificados",
+    },
+    {
+      title: "Plataforma Integrada",
+      description: "Disponível Web + Mobile",
+    },
+    {
+      title: "Documentação 100% Digital",
+      description: "Sem papel, sem burocracia",
+    },
+  ];
+
+  return (
+    <section id="diferenciais" className="py-16 sm:py-24 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Tecnologia a Serviço da Eficiência Pública
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Recursos técnicos que fazem a diferença no dia a dia
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+          {features.map((feature, index) => (
+            <Card
+              key={index}
+              className="p-6 hover-lift animate-fade-in border-2 hover:border-primary/20 transition-colors"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <CheckCircle2 className="w-7 h-7 text-accent" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TechnicalSection;
