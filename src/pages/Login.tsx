@@ -48,6 +48,13 @@ const Login = () => {
 
       if (error) {
         console.error("Error checking approval status:", error);
+        // Se não encontrar o perfil, assumir que não está aprovado
+        toast({
+          title: "Erro de Configuração",
+          description: "Perfil não encontrado. Entre em contato com o administrador.",
+          variant: "destructive",
+        });
+        await supabase.auth.signOut();
         return;
       }
 
@@ -65,6 +72,12 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Error in approval check:", error);
+      toast({
+        title: "Erro",
+        description: "Ocorreu um erro durante o login. Tente novamente.",
+        variant: "destructive",
+      });
+      await supabase.auth.signOut();
     }
   };
 

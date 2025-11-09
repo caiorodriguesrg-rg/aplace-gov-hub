@@ -52,34 +52,57 @@ const Dashboard = () => {
   }, [navigate]);
 
   const checkAuth = async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    setSession(session);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      setSession(session);
 
-    if (!session) {
-      navigate("/login");
-      return;
-    }
+      if (!session) {
+        navigate("/login");
+        return;
+      }
 
-    const { data: roleData, error: roleError } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", session.user.id)
-      .eq("role", "admin")
-      .maybeSingle();
+      // Verificar role de admin com tratamento de erro robusto
+      const { data: roleData, error: roleError } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id)
+        .eq("role", "admin")
+        .maybeSingle();
 
-    if (roleError || !roleData) {
+      if (roleError) {
+        console.error("Error checking admin role:", roleError);
+        toast({
+          title: "Erro de Autorização",
+          description: "Erro ao verificar permissões. Tente novamente.",
+          variant: "destructive",
+        });
+        navigate("/login");
+        return;
+      }
+
+      if (!roleData) {
+        toast({
+          title: "Acesso Negado",
+          description: "Você não tem permissão para acessar esta página.",
+          variant: "destructive",
+        });
+        navigate("/login");
+        return;
+      }
+
+      setIsAdmin(true);
+      await fetchRequests();
+    } catch (error) {
+      console.error("Error in checkAuth:", error);
       toast({
-        title: "Acesso negado",
-        description: "Você não tem permissão para acessar esta página",
+        title: "Erro",
+        description: "Erro ao carregar o dashboard. Tente novamente.",
         variant: "destructive",
       });
-      navigate("/");
-      return;
+      navigate("/login");
+    } finally {
+      setLoading(false);
     }
-
-    setIsAdmin(true);
-    await fetchRequests();
-    setLoading(false);
   };
 
   const fetchRequests = async () => {
