@@ -22,7 +22,8 @@ const Login = () => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       if (session) {
-        navigate("/");
+        // Check approval status before allowing access
+        checkApprovalStatus(session.user.id);
       }
     });
 
@@ -32,12 +33,43 @@ const Login = () => {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       if (session) {
-        navigate("/");
+        // Check approval status before allowing access
+        checkApprovalStatus(session.user.id);
       }
     });
 
     return () => subscription.unsubscribe();
   }, [navigate]);
+
+  const checkApprovalStatus = async (userId: string) => {
+    try {
+      const { data: profile, error } = await supabase
+        .from("profiles")
+        .select("approved")
+        .eq("id", userId)
+        .single();
+
+      if (error) {
+        console.error("Error checking approval status:", error);
+        return;
+      }
+
+      if (!profile?.approved) {
+        // User is not approved, sign them out
+        await supabase.auth.signOut();
+        toast({
+          title: "Aguardando Aprovação",
+          description: "Sua conta está aguardando aprovação de um administrador. Você receberá um email quando sua conta for aprovada.",
+          variant: "destructive",
+        });
+      } else {
+        // User is approved, redirect to home
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error in approval check:", error);
+    }
+  };
 
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -110,12 +142,8 @@ const Login = () => {
               variant: "destructive",
             });
           }
-        } else {
-          toast({
-            title: "Sucesso",
-            description: "Login realizado com sucesso!",
-          });
         }
+        // Note: Success handling and approval check now handled in useEffect via onAuthStateChange
       } else {
         const { error } = await supabase.auth.signUp({
           email,
@@ -142,7 +170,7 @@ const Login = () => {
         } else {
           toast({
             title: "Sucesso",
-            description: "Cadastro realizado! Verifique seu email para confirmar.",
+            description: "Cadastro realizado! Sua conta está aguardando aprovação de um administrador.",
           });
         }
       }
