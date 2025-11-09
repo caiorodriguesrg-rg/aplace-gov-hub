@@ -21,6 +21,7 @@ interface DemonstrationRequest {
 const Dashboard = () => {
   const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
   const [loading, setLoading] = useState(true);
   const [requests, setRequests] = useState<DemonstrationRequest[]>([]);
   const [draggedId, setDraggedId] = useState<string | null>(null);
@@ -82,18 +83,42 @@ const Dashboard = () => {
         return;
       }
 
-      if (!count || count < 1) {
+      if (count && count > 0) {
+        setIsAdmin(true);
+        await fetchRequests();
+        return;
+      }
+
+      // Não é admin: verificar aprovação no perfil
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("approved")
+        .eq("id", session.user.id)
+        .maybeSingle();
+
+      if (profileError) {
+        console.error("Error checking approval status:", profileError);
         toast({
-          title: "Acesso Negado",
-          description: "Você não tem permissão para acessar esta página.",
+          title: "Erro de Configuração",
+          description: "Perfil não encontrado. Entre em contato com o administrador.",
           variant: "destructive",
         });
         navigate("/login");
         return;
       }
 
-      setIsAdmin(true);
-      await fetchRequests();
+      if (profile?.approved) {
+        setIsApproved(true);
+        return;
+      } else {
+        toast({
+          title: "Aguardando Aprovação",
+          description: "Sua conta aguarda aprovação de um administrador.",
+          variant: "destructive",
+        });
+        navigate("/login");
+        return;
+      }
     } catch (error) {
       console.error("Error in checkAuth:", error);
       toast({
@@ -210,7 +235,7 @@ const Dashboard = () => {
     );
   }
 
-  if (!isAdmin) {
+  if (!isAdmin && !isApproved) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-background">
         <div className="max-w-md text-center space-y-4">
@@ -232,13 +257,15 @@ const Dashboard = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => navigate("/admin")}
-              >
-                <ArrowLeft className="h-5 w-5" />
-              </Button>
+              {isAdmin && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => navigate("/admin")}
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </Button>
+              )}
               <div>
                 <h1 className="text-2xl font-bold text-foreground">
                   Dashboard CRM
