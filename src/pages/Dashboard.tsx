@@ -24,6 +24,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [requests, setRequests] = useState<DemonstrationRequest[]>([]);
   const [draggedId, setDraggedId] = useState<string | null>(null);
+  const [highlightedColumn, setHighlightedColumn] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -162,6 +163,15 @@ const Dashboard = () => {
     navigate("/login");
   };
 
+  const scrollToColumn = (columnKey: string) => {
+    const element = document.getElementById(`kanban-column-${columnKey}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      setHighlightedColumn(columnKey);
+      setTimeout(() => setHighlightedColumn(null), 2000);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -217,7 +227,7 @@ const Dashboard = () => {
       <div className="container mx-auto px-6 py-8">
         {/* Cards de Métricas */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-          <Card>
+          <Card className="cursor-pointer hover:shadow-lg transition-all" onClick={() => scrollToColumn("new")}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Total de Leads
@@ -232,7 +242,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="cursor-pointer hover:shadow-lg transition-all" onClick={() => scrollToColumn("new")}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Novos Contatos
@@ -247,7 +257,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="cursor-pointer hover:shadow-lg transition-all" onClick={() => scrollToColumn("negotiating")}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Em Negociação
@@ -262,7 +272,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="cursor-pointer hover:shadow-lg transition-all border-green-500/20" onClick={() => scrollToColumn("closed")}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Fechados
@@ -277,7 +287,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="cursor-pointer hover:shadow-lg transition-all" onClick={() => scrollToColumn("closed")}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Taxa de Conversão
@@ -308,6 +318,7 @@ const Dashboard = () => {
               requests={getRequestsByStatus(status.key)}
               count={getRequestsByStatus(status.key).length}
               color={status.color}
+              highlighted={highlightedColumn === status.key}
               onDragOver={handleDragOver}
               onDrop={handleDrop}
               onDragStart={handleDragStart}
