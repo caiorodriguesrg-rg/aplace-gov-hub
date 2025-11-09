@@ -63,8 +63,8 @@ const Login = () => {
           variant: "destructive",
         });
       } else {
-        // User is approved, redirect to home
-        navigate("/");
+        // User is approved, redirect to dashboard
+        navigate("/dashboard");
       }
     } catch (error) {
       console.error("Error in approval check:", error);
