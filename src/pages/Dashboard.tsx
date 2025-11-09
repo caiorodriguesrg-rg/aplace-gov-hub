@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Session } from "@supabase/supabase-js";
 import { KanbanColumn } from "@/components/KanbanColumn";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, LogOut } from "lucide-react";
 
 interface DemonstrationRequest {
   id: string;
@@ -140,6 +140,15 @@ const Dashboard = () => {
     return requests.filter((req) => req.status === status);
   };
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    toast({
+      title: "Logout realizado",
+      description: "Você saiu com sucesso",
+    });
+    navigate("/login");
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -174,8 +183,19 @@ const Dashboard = () => {
                 </p>
               </div>
             </div>
-            <div className="text-sm text-muted-foreground">
-              Total: <span className="font-semibold text-foreground">{requests.length}</span> solicitações
+            <div className="flex items-center gap-4">
+              <div className="text-sm text-muted-foreground">
+                Total: <span className="font-semibold text-foreground">{requests.length}</span> solicitações
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleLogout}
+                className="gap-2"
+              >
+                <LogOut className="h-4 w-4" />
+                Sair
+              </Button>
             </div>
           </div>
         </div>
