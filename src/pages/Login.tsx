@@ -18,25 +18,33 @@ const Login = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check for existing session
+    // Registrar listener PRIMEIRO
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        // Apenas atualizações síncronas aqui
+        setSession(session);
+        
+        // Adiar chamadas ao Supabase com setTimeout para evitar deadlock
+        if (event === "SIGNED_IN" && session?.user) {
+          setTimeout(() => {
+            checkApprovalStatus(session.user.id);
+          }, 0);
+        }
+      }
+    );
+
+    // DEPOIS verificar sessão existente
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      // Don't auto-redirect - allow access to login page
-    });
-
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      // Only redirect after a successful login event, not on page load
-      if (_event === 'SIGNED_IN' && session) {
-        checkApprovalStatus(session.user.id);
+      if (session?.user) {
+        setTimeout(() => {
+          checkApprovalStatus(session.user.id);
+        }, 0);
       }
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, []);
 
   const checkApprovalStatus = async (userId: string) => {
     try {

@@ -37,16 +37,19 @@ const Dashboard = () => {
   ];
 
   useEffect(() => {
-    checkAuth();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      if (!session) {
-        navigate("/login");
+    // Registrar listener PRIMEIRO
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        // Apenas atualizações síncronas
+        setSession(session);
+        if (!session) {
+          navigate("/login");
+        }
       }
-    });
+    );
+
+    // DEPOIS chamar checkAuth
+    checkAuth();
 
     return () => subscription.unsubscribe();
   }, [navigate]);
@@ -61,13 +64,12 @@ const Dashboard = () => {
         return;
       }
 
-      // Verificar role de admin com tratamento de erro robusto
-      const { data: roleData, error: roleError } = await supabase
+      // Verificar role de admin usando head + count (mais robusto)
+      const { count, error: roleError } = await supabase
         .from("user_roles")
-        .select("role")
+        .select("id", { count: "exact", head: true })
         .eq("user_id", session.user.id)
-        .eq("role", "admin")
-        .maybeSingle();
+        .eq("role", "admin");
 
       if (roleError) {
         console.error("Error checking admin role:", roleError);
@@ -80,7 +82,7 @@ const Dashboard = () => {
         return;
       }
 
-      if (!roleData) {
+      if (!count || count < 1) {
         toast({
           title: "Acesso Negado",
           description: "Você não tem permissão para acessar esta página.",
@@ -209,7 +211,19 @@ const Dashboard = () => {
   }
 
   if (!isAdmin) {
-    return null;
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-background">
+        <div className="max-w-md text-center space-y-4">
+          <h1 className="text-2xl font-bold text-destructive">Acesso Negado</h1>
+          <p className="text-muted-foreground">
+            Você não tem permissão para acessar o painel administrativo.
+          </p>
+          <Button onClick={() => navigate("/login")}>
+            Voltar para o Login
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   return (
