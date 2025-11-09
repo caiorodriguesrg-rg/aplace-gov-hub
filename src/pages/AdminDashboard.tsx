@@ -142,12 +142,22 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-background p-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground">
-            Painel Administrativo
-          </h1>
-          <Button variant="outline" onClick={handleLogout}>
-            Sair
-          </Button>
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">
+              Painel Administrativo
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              Gerencie usuários e solicitações
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <Button variant="default" onClick={() => navigate("/dashboard")}>
+              Dashboard CRM
+            </Button>
+            <Button variant="outline" onClick={handleLogout}>
+              Sair
+            </Button>
+          </div>
         </div>
 
         <div className="bg-card rounded-lg border shadow-sm p-6">
