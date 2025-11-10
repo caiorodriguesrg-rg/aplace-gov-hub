@@ -16,31 +16,31 @@ const ProblemsSection = () => {
 
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {/* ANTES */}
-          <Card className="p-6 sm:p-8 border-2 border-muted bg-gradient-to-br from-muted/80 to-muted/40 hover-lift animate-fade-in shadow-md hover:shadow-lg transition-all">
+          <Card className="p-6 sm:p-8 border-2 border-primary bg-gradient-to-br from-primary/10 via-primary/5 to-transparent hover-lift animate-fade-in shadow-md hover:shadow-lg transition-all">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center shadow-sm">
-                <Clock className="w-6 h-6 text-muted-foreground" />
+              <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center shadow-md">
+                <Clock className="w-6 h-6 text-primary-foreground" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground">ANTES</h3>
+              <h3 className="text-2xl font-bold text-primary">ANTES</h3>
             </div>
             
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
+                <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold mb-1">Processos de 7-8 meses</p>
                   <p className="text-sm text-muted-foreground">Licitações longas e desgastantes</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <FileText className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
+                <FileText className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold mb-1">Burocracia excessiva</p>
                   <p className="text-sm text-muted-foreground">Pilhas de documentos físicos</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <TrendingUp className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
+                <TrendingUp className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold mb-1">Falta de previsibilidade</p>
                   <p className="text-sm text-muted-foreground">Impossível planejar aquisições</p>
@@ -50,31 +50,31 @@ const ProblemsSection = () => {
           </Card>
 
           {/* AGORA */}
-          <Card className="p-6 sm:p-8 border-2 border-primary bg-gradient-to-br from-primary/10 via-primary/5 to-transparent hover-lift animate-fade-in md:scale-105 shadow-lg hover:shadow-accent transition-all">
+          <Card className="p-6 sm:p-8 border-2 border-accent bg-gradient-to-br from-accent/15 via-accent/8 to-transparent hover-lift animate-fade-in md:scale-105 shadow-lg hover:shadow-accent transition-all">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center shadow-md">
-                <Zap className="w-6 h-6 text-primary-foreground" />
+              <div className="w-12 h-12 rounded-full gradient-accent flex items-center justify-center shadow-md">
+                <Zap className="w-6 h-6 text-accent-foreground" />
               </div>
-              <h3 className="text-2xl font-bold text-primary">AGORA</h3>
+              <h3 className="text-2xl font-bold text-accent">AGORA</h3>
             </div>
             
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Zap className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                <Zap className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold mb-1">Processos em até 20 dias</p>
                   <p className="text-sm text-muted-foreground">Agilidade sem precedentes</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Monitor className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                <Monitor className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold mb-1">100% digital e simplificado</p>
                   <p className="text-sm text-muted-foreground">Interface moderna e intuitiva</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <BarChart3 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                <BarChart3 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold mb-1">Previsibilidade total</p>
                   <p className="text-sm text-muted-foreground">Planejamento eficiente de aquisições</p>
