@@ -70,9 +70,7 @@ const Footer = () => {
             <p className="text-white/70 text-sm text-center sm:text-left">
               © {currentYear} Ápice Tecnologias - Todos os direitos reservados
             </p>
-            <div className="text-sm text-white/70">
-            <span className="text-accent">❤</span> para a gestão pública brasileira
-            </div>
+            
           </div>
         </div>
       </div>
