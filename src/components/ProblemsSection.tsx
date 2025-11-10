@@ -16,7 +16,7 @@ const ProblemsSection = () => {
 
         <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
           {/* ANTES */}
-          <Card className="p-8 sm:p-10 border-2 border-primary bg-gradient-to-br from-primary/10 via-primary/5 to-transparent hover-lift animate-fade-in shadow-md hover:shadow-lg transition-all">
+          <Card className="p-8 sm:p-10 border-2 border-primary bg-gradient-to-br from-primary/15 via-primary/8 to-primary/3 hover-lift animate-fade-in shadow-md hover:shadow-lg transition-all" style={{ animationDelay: '0ms' }}>
             <div className="flex items-center gap-4 mb-8">
               <div className="w-14 h-14 rounded-full gradient-primary flex items-center justify-center shadow-md">
                 <Clock className="w-7 h-7 text-primary-foreground" />
@@ -50,7 +50,7 @@ const ProblemsSection = () => {
           </Card>
 
           {/* AGORA */}
-          <Card className="p-8 sm:p-10 border-2 border-accent bg-gradient-to-br from-accent/15 via-accent/8 to-transparent hover-lift animate-fade-in md:scale-105 shadow-lg hover:shadow-accent transition-all">
+          <Card className="p-8 sm:p-10 border-2 border-accent bg-gradient-to-br from-accent/12 via-accent/6 to-accent/2 hover-lift animate-fade-in md:scale-105 shadow-lg hover:shadow-accent transition-all" style={{ animationDelay: '150ms' }}>
             <div className="flex items-center gap-4 mb-8">
               <div className="w-14 h-14 rounded-full gradient-accent flex items-center justify-center shadow-md">
                 <Zap className="w-7 h-7 text-accent-foreground" />
@@ -84,9 +84,9 @@ const ProblemsSection = () => {
           </Card>
 
           {/* RESULTADO */}
-          <Card className="p-8 sm:p-10 border-2 border-accent bg-gradient-to-br from-accent/10 via-accent/5 to-transparent hover-lift animate-fade-in shadow-md hover:shadow-accent transition-all">
+          <Card className="p-8 sm:p-10 border-2 border-accent/60 bg-gradient-to-br from-accent/8 via-accent/4 to-accent/1 hover-lift animate-fade-in shadow-md hover:shadow-accent transition-all" style={{ animationDelay: '300ms' }}>
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-14 h-14 rounded-full gradient-accent flex items-center justify-center shadow-md">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-accent/80 to-accent/60 flex items-center justify-center shadow-md">
                 <TrendingUp className="w-7 h-7 text-accent-foreground" />
               </div>
               <h3 className="text-3xl font-bold text-accent">RESULTADO</h3>
