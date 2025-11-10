@@ -16,31 +16,31 @@ const ProblemsSection = () => {
 
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {/* ANTES */}
-          <Card className="p-6 sm:p-8 border-2 border-destructive/20 bg-destructive/5 hover-lift animate-fade-in">
+          <Card className="p-6 sm:p-8 border-2 border-muted bg-muted/50 hover-lift animate-fade-in">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-destructive/20 flex items-center justify-center">
-                <Clock className="w-6 h-6 text-destructive" />
+              <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
+                <Clock className="w-6 h-6 text-muted-foreground" />
               </div>
-              <h3 className="text-2xl font-bold text-destructive">ANTES</h3>
+              <h3 className="text-2xl font-bold text-foreground">ANTES</h3>
             </div>
             
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
+                <Clock className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold mb-1">Processos de 7-8 meses</p>
                   <p className="text-sm text-muted-foreground">Licitações longas e desgastantes</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <FileText className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
+                <FileText className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold mb-1">Burocracia excessiva</p>
                   <p className="text-sm text-muted-foreground">Pilhas de documentos físicos</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <TrendingUp className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
+                <TrendingUp className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold mb-1">Falta de previsibilidade</p>
                   <p className="text-sm text-muted-foreground">Impossível planejar aquisições</p>
