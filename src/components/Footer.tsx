@@ -1,20 +1,13 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import logoImage from "@/assets/aplace-logo.png";
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  return (
-    <footer className="bg-primary-dark text-white py-12 sm:py-16">
+  return <footer className="bg-primary-dark text-white py-12 sm:py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-8">
           {/* Logo e Descrição */}
           <div>
-            <img 
-              src={logoImage} 
-              alt="Á.Place - Sistema de Marketplace" 
-              className="h-10 w-auto mb-4"
-            />
+            <img src={logoImage} alt="Á.Place - Sistema de Marketplace" className="h-10 w-auto mb-4" />
             <p className="text-white/80 mb-4">
               O marketplace digital que está transformando as compras públicas no Brasil.
             </p>
@@ -74,17 +67,13 @@ const Footer = () => {
         {/* Divider */}
         <div className="border-t border-white/20 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-white/70 text-sm text-center sm:text-left">
-              © {currentYear} Ápice Tecnologias - Todos os direitos reservados
-            </p>
+            
             <div className="text-sm text-white/70">
               Desenvolvido com <span className="text-accent">❤</span> para a gestão pública brasileira
             </div>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
