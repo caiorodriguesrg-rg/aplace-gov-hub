@@ -29,11 +29,11 @@ const HowItWorksSection = () => {
   return (
     <section id="como-funciona" className="py-16 sm:py-24 bg-secondary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+        <div className="text-center mb-16 sm:mb-20 animate-fade-in">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             Simples como um E-commerce, Seguro como Deve Ser
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Três passos para revolucionar as compras do seu órgão
           </p>
         </div>
@@ -46,21 +46,21 @@ const HowItWorksSection = () => {
             const Icon = step.icon;
             return (
               <div key={index} className="relative animate-fade-in" style={{ animationDelay: `${index * 150}ms` }}>
-                <Card className="p-6 sm:p-8 text-center h-full hover-lift border-2 hover:border-primary/30 transition-all">
+                <Card className="p-8 sm:p-10 text-center h-full hover-lift border-2 hover:border-primary/40 bg-gradient-to-br from-background to-secondary/40 shadow-md hover:shadow-lg transition-all">
                   {/* Number Badge */}
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold mb-6 shadow-md relative z-10">
+                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full gradient-primary text-primary-foreground text-3xl font-bold mb-8 shadow-lg relative z-10">
                     {step.number}
                   </div>
 
                   {/* Icon */}
-                  <div className="w-16 h-16 mx-auto bg-accent/10 rounded-xl flex items-center justify-center mb-4">
-                    <Icon className="w-8 h-8 text-accent" />
+                  <div className="w-20 h-20 mx-auto bg-accent/15 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                    <Icon className="w-10 h-10 text-accent" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
-                  <p className="text-lg font-semibold text-primary mb-3">{step.description}</p>
-                  <p className="text-muted-foreground">{step.details}</p>
+                  <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
+                  <p className="text-lg font-semibold text-primary mb-4">{step.description}</p>
+                  <p className="text-base text-muted-foreground leading-relaxed">{step.details}</p>
                 </Card>
               </div>
             );

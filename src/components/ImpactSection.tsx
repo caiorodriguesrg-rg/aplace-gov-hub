@@ -34,11 +34,11 @@ const ImpactSection = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-white">
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white">
             Números que Fazem a Diferença
           </h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto">
             Resultados reais que transformam a gestão pública
           </p>
         </div>
@@ -52,11 +52,11 @@ const ImpactSection = () => {
                 className="text-center animate-scale-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl mb-4">
-                  <Icon className="w-8 h-8 text-accent" />
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl mb-6 shadow-lg hover:bg-white/15 transition-all">
+                  <Icon className="w-10 h-10 text-accent" />
                 </div>
-                <div className="text-4xl sm:text-5xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-white/80 text-sm sm:text-base">{stat.label}</div>
+                <div className="text-5xl sm:text-6xl font-bold text-white mb-3">{stat.value}</div>
+                <div className="text-white/80 text-base sm:text-lg">{stat.label}</div>
               </div>
             );
           })}

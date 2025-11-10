@@ -81,16 +81,16 @@ const ContactSection = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12 animate-fade-in text-white">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          <div className="text-center mb-16 animate-fade-in text-white">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               Modernize as Compras do Seu Órgão Público
             </h2>
-            <p className="text-lg text-white/90">
+            <p className="text-xl text-white/90">
               Junte-se à nova era das compras públicas brasileiras
             </p>
           </div>
 
-          <Card className="p-6 sm:p-8 lg:p-10 animate-scale-in shadow-2xl">
+          <Card className="p-8 sm:p-10 lg:p-12 animate-scale-in shadow-2xl border-2 border-white/10 backdrop-blur-sm bg-white/95">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>

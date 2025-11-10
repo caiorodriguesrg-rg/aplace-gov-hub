@@ -50,11 +50,11 @@ const BenefitsSection = () => {
   return (
     <section id="beneficios" className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+        <div className="text-center mb-16 sm:mb-20 animate-fade-in">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             Por que Escolher o Á.Place?
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A solução completa para modernizar as compras públicas do seu órgão
           </p>
         </div>
@@ -65,13 +65,13 @@ const BenefitsSection = () => {
             return (
               <Card
                 key={index}
-                className="p-6 hover-lift animate-fade-in border-2 hover:border-primary/20 transition-colors"
+                className="p-8 hover-lift animate-fade-in border-2 hover:border-accent/50 transition-all bg-gradient-to-br from-background to-secondary/30 shadow-sm hover:shadow-md"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className={`w-14 h-14 ${benefit.bgColor} rounded-xl flex items-center justify-center mb-4`}>
-                  <Icon className={`w-7 h-7 ${benefit.color}`} />
+                <div className={`w-16 h-16 ${benefit.bgColor} rounded-2xl flex items-center justify-center mb-6 shadow-sm`}>
+                  <Icon className={`w-8 h-8 ${benefit.color}`} />
                 </div>
-                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
+                <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
                 <p className="text-muted-foreground">{benefit.description}</p>
               </Card>
             );
