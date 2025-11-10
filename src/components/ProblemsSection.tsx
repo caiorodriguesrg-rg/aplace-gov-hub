@@ -16,9 +16,9 @@ const ProblemsSection = () => {
 
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {/* ANTES */}
-          <Card className="p-6 sm:p-8 border-2 border-muted bg-muted/50 hover-lift animate-fade-in">
+          <Card className="p-6 sm:p-8 border-2 border-muted bg-gradient-to-br from-muted/80 to-muted/40 hover-lift animate-fade-in shadow-md hover:shadow-lg transition-all">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center shadow-sm">
                 <Clock className="w-6 h-6 text-muted-foreground" />
               </div>
               <h3 className="text-2xl font-bold text-foreground">ANTES</h3>
@@ -50,10 +50,10 @@ const ProblemsSection = () => {
           </Card>
 
           {/* AGORA */}
-          <Card className="p-6 sm:p-8 border-2 border-primary bg-primary/5 hover-lift animate-fade-in md:scale-105 shadow-lg">
+          <Card className="p-6 sm:p-8 border-2 border-primary bg-gradient-to-br from-primary/10 via-primary/5 to-transparent hover-lift animate-fade-in md:scale-105 shadow-lg hover:shadow-accent transition-all">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                <Zap className="w-6 h-6 text-primary" />
+              <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center shadow-md">
+                <Zap className="w-6 h-6 text-primary-foreground" />
               </div>
               <h3 className="text-2xl font-bold text-primary">AGORA</h3>
             </div>
@@ -84,31 +84,31 @@ const ProblemsSection = () => {
           </Card>
 
           {/* RESULTADO */}
-          <Card className="p-6 sm:p-8 border-2 border-accent bg-accent/5 hover-lift animate-fade-in">
+          <Card className="p-6 sm:p-8 border-2 border-accent bg-gradient-to-br from-accent/10 via-accent/5 to-transparent hover-lift animate-fade-in shadow-md hover:shadow-accent transition-all">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-accent" />
+              <div className="w-12 h-12 rounded-full gradient-accent flex items-center justify-center shadow-md">
+                <TrendingUp className="w-6 h-6 text-accent-foreground" />
               </div>
               <h3 className="text-2xl font-bold text-accent">RESULTADO</h3>
             </div>
             
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-accent text-accent-foreground flex items-center justify-center mt-0.5 flex-shrink-0 text-xs font-bold">✓</div>
+                <div className="w-5 h-5 rounded-full bg-accent text-accent-foreground flex items-center justify-center mt-0.5 flex-shrink-0 text-xs font-bold shadow-sm">✓</div>
                 <div>
                   <p className="font-semibold mb-1">80% menos tempo</p>
                   <p className="text-sm text-muted-foreground">Eficiência comprovada</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-accent text-accent-foreground flex items-center justify-center mt-0.5 flex-shrink-0 text-xs font-bold">✓</div>
+                <div className="w-5 h-5 rounded-full bg-accent text-accent-foreground flex items-center justify-center mt-0.5 flex-shrink-0 text-xs font-bold shadow-sm">✓</div>
                 <div>
                   <p className="font-semibold mb-1">Maior eficiência</p>
                   <p className="text-sm text-muted-foreground">Recursos otimizados</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-accent text-accent-foreground flex items-center justify-center mt-0.5 flex-shrink-0 text-xs font-bold">✓</div>
+                <div className="w-5 h-5 rounded-full bg-accent text-accent-foreground flex items-center justify-center mt-0.5 flex-shrink-0 text-xs font-bold shadow-sm">✓</div>
                 <div>
                   <p className="font-semibold mb-1">Transparência garantida</p>
                   <p className="text-sm text-muted-foreground">Total rastreabilidade</p>
