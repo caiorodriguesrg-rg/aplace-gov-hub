@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin } from "lucide-react";
+import logoImage from "@/assets/aplace-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,9 +10,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-8">
           {/* Logo e Descrição */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">
-              Á.Place <span className="text-accent">by Ápice</span>
-            </h3>
+            <img 
+              src={logoImage} 
+              alt="Á.Place - Sistema de Marketplace" 
+              className="h-10 w-auto mb-4"
+            />
             <p className="text-white/80 mb-4">
               O marketplace digital que está transformando as compras públicas no Brasil.
             </p>
