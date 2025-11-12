@@ -21,6 +21,7 @@ const ContactSection = () => {
     email: "",
     phone: "",
   });
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,6 +72,7 @@ const ContactSection = () => {
   };
 
   const handleDownloadPresentation = async () => {
+    setIsDownloading(true);
     try {
       // Obter URL pública do arquivo no Storage
       const { data } = supabase.storage
@@ -81,19 +83,32 @@ const ContactSection = () => {
         throw new Error('Não foi possível obter a URL do arquivo');
       }
       
+      // Baixar o arquivo como blob
+      const response = await fetch(data.publicUrl);
+      if (!response.ok) {
+        throw new Error('Erro ao baixar o arquivo');
+      }
+      
+      const blob = await response.blob();
+      
       // Criar link temporário e acionar download
+      const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = data.publicUrl;
+      link.href = url;
       link.download = 'Apresentacao-APlace.pdf';
-      link.target = '_blank';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       
-      toast.success("Download iniciado!");
+      // Limpar URL temporária
+      window.URL.revokeObjectURL(url);
+      
+      toast.success("Download concluído!");
     } catch (error) {
       console.error('Erro ao baixar apresentação:', error);
       toast.error("Erro ao baixar apresentação. Tente novamente.");
+    } finally {
+      setIsDownloading(false);
     }
   };
 
@@ -201,9 +216,10 @@ const ContactSection = () => {
                   size="lg"
                   className="flex-1"
                   onClick={handleDownloadPresentation}
+                  disabled={isDownloading}
                 >
                   <Download className="w-5 h-5 mr-2" />
-                  Baixar Apresentação
+                  {isDownloading ? "Baixando..." : "Baixar Apresentação"}
                 </Button>
               </div>
             </form>
