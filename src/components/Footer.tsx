@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin } from "lucide-react";
-import logoImage from "@/assets/aplace-logo.png";
+import logoImage from "@/assets/aplace-logo-new.png";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return <footer className="bg-primary-dark text-white py-12 sm:py-16">
