@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import logoImage from "@/assets/aplace-logo-new.png";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  return <footer className="bg-primary-dark text-white py-12 sm:py-16">
+  return <footer className="text-white py-12 sm:py-16" style={{ backgroundColor: '#2a0b1f' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-8">
           {/* Logo e Descrição */}
