@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
-import heroDashboard from "@/assets/hero-dashboard.jpg";
+import heroDashboard from "@/assets/hero-dashboard-new.jpg";
 
 const HeroSection = () => {
   const scrollToContact = () => {
@@ -79,11 +79,11 @@ const HeroSection = () => {
           {/* Image */}
           <div className="animate-scale-in lg:order-last">
             <div className="relative">
-              <div className="absolute inset-0 bg-accent/20 rounded-2xl blur-3xl"></div>
+              <div className="absolute inset-0 bg-accent/20 rounded-3xl blur-3xl"></div>
               <img
                 src={heroDashboard}
                 alt="Dashboard do Á.Place"
-                className="relative rounded-2xl shadow-2xl w-full"
+                className="relative rounded-3xl shadow-2xl w-full object-cover"
               />
             </div>
           </div>
