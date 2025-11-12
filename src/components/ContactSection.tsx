@@ -70,12 +70,16 @@ const ContactSection = () => {
     });
   };
 
-  const handleDownloadPresentation = () => {
+  const handleDownloadPresentation = async () => {
     try {
       // Obter URL pública do arquivo no Storage
       const { data } = supabase.storage
         .from('documents')
-        .getPublicUrl('apresentacao_aplace.pdf');
+        .getPublicUrl('apresentacao-aplace.pdf');
+      
+      if (!data.publicUrl) {
+        throw new Error('Não foi possível obter a URL do arquivo');
+      }
       
       // Criar link temporário e acionar download
       const link = document.createElement('a');
