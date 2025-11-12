@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
-import logoImage from "@/assets/aplace-logo.png";
+import logoImage from "@/assets/aplace-logo-new.png";
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const scrollToSection = (id: string) => {
